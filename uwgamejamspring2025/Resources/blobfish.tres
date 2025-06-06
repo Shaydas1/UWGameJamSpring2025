@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FishType" load_steps=2 format=3 uid="uid://jlm2n85s36g2"]
+
+[ext_resource type="Script" uid="uid://chc1mao8ybiog" path="res://Scripts/Fish/fish_type.gd" id="1_llb2s"]
+
+[resource]
+script = ExtResource("1_llb2s")
+score = 0
+metadata/_custom_type_script = "uid://chc1mao8ybiog"
