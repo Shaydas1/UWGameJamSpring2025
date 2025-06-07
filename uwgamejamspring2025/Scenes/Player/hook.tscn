@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0ysbbmva5x1m"]
+
+[ext_resource type="Script" uid="uid://h75fjws6n6gm" path="res://Scripts/Player/hook.gd" id="1_3f4bw"]
+[ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="2_1q8x0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qk2li"]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1q8x0"]
+
+[node name="Hook" type="RigidBody2D"]
+lock_rotation = true
+script = ExtResource("1_3f4bw")
+water_gravity_scale = null
+water_damping = null
+max_speed = null
+metadata/_custom_type_script = "uid://h75fjws6n6gm"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1q8x0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qk2li")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_1q8x0")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_exit"]
