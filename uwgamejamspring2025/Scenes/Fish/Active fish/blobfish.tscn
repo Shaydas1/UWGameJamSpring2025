@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbss0dxrgjsvn"]
+[gd_scene load_steps=7 format=3 uid="uid://bbss0dxrgjsvn"]
 
 [ext_resource type="Script" uid="uid://d0pttjiudtjan" path="res://Scripts/Fish/blobfish.gd" id="1_gkfby"]
 [ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="3_2vrtk"]
-[ext_resource type="PackedScene" uid="uid://cq0xwuyd6grxr" path="res://Scenes/States/state_dead.tscn" id="3_gkfby"]
 [ext_resource type="PackedScene" uid="uid://cgjm785q5sf6g" path="res://Scenes/States/state_flee.tscn" id="4_2vrtk"]
 [ext_resource type="PackedScene" uid="uid://bg8bh3jp0r6bp" path="res://Scenes/States/state_wander.tscn" id="5_sxe30"]
 
@@ -26,8 +25,6 @@ texture = ExtResource("3_2vrtk")
 position = Vector2(0, 1.77636e-15)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gkfby")
-
-[node name="StateDead" parent="." instance=ExtResource("3_gkfby")]
 
 [node name="StateFleeing" parent="." node_paths=PackedStringArray("exit_state") instance=ExtResource("4_2vrtk")]
 exit_state = NodePath("../StateWander")

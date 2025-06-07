@@ -3,14 +3,22 @@ extends State
 @export var exit_state : State
 @export var dest_tol : float
 
-var patrol_path : Array[Vector2]
+var patrol_path : Line2D
 var cur_patrol_dest_idx : int
 
 @onready var fish = get_parent()
 @onready var threat_box = $ThreatBox
 
-func initialize(patrol_path_node : PatrolPath) -> void:
-	patrol_path = patrol_path_node.get_patrol_path()
+func initialize(non_global_patrol_path : Line2D) -> void:
+	
+	patrol_path = non_global_patrol_path
+	
+	# The patrol path is made relative to (0, 0), we want the path in global pos
+	for idx in range(non_global_patrol_path.get_point_count()):
+		patrol_path.set_point_position(
+			idx,
+			non_global_patrol_path.get_point_position(idx) + fish.global_position
+			)
 	
 	cur_patrol_dest_idx = 0
 	set_next_patrol_destination()
@@ -22,7 +30,7 @@ func _physics_process(delta: float) -> void:
 # Assumes a patrol path exists.
 func set_next_patrol_destination() -> void:
 	cur_patrol_dest_idx = incr_patrol_idx(cur_patrol_dest_idx)
-	var destination = patrol_path[cur_patrol_dest_idx]
+	var destination = patrol_path.get_point_position(cur_patrol_dest_idx)
 	
 	var move_direction = (destination - fish.global_position).normalized()
 	
@@ -30,15 +38,15 @@ func set_next_patrol_destination() -> void:
 	fish.velocity.y = move_direction.y * fish.move_speed
 
 func incr_patrol_idx(idx : int) -> int:
-	if (idx >= patrol_path.size() - 1):
+	if (idx >= patrol_path.get_point_count() - 1):
 		return 0
 	return idx + 1
 
-# Inherited methdos
+# Inherited methods
 func update() -> State:
 	# Check if we have hit our destination
-	if (patrol_path.size() != 0):
-		var destination = patrol_path[cur_patrol_dest_idx]
+	if (patrol_path.get_point_count() != 0):
+		var destination = patrol_path.get_point_position(cur_patrol_dest_idx)
 		
 		if (abs(fish.global_position - destination).length() < dest_tol):
 			# If so, call set_next_patrol_destination
@@ -47,11 +55,10 @@ func update() -> State:
 	# Check if player is detected
 	var overlapping_bodies = threat_box.get_overlapping_areas()
 	
-	# OVERLAP DETECTION NOT TESTED YET
 	for overlapping_body in overlapping_bodies:
 		if overlapping_body.is_in_group("hook"):
 			# If so, set the location of the player in state_flee and return state_flee
-			exit_state.threat_location = overlapping_body
+			exit_state.threat_location = overlapping_body.global_position
 			return exit_state
 	
 	# FOR TESTING:
@@ -67,19 +74,21 @@ func dist_from_fish(point : Vector2) -> float:
 
 func enter():
 	# need a patrol path to return to, or we just do nothing
-	if patrol_path.size() <= 0:
+	if patrol_path.get_point_count() <= 0:
 		return
 	
 	# find nearest point
 	var closest_patrol_point_idx = 0
 	
-	for idx in range(patrol_path.size()):
-		if dist_from_fish(patrol_path[idx]) < dist_from_fish(patrol_path[closest_patrol_point_idx]):
+	for idx in range(patrol_path.get_point_count()):
+		var idx_point_dist = dist_from_fish(patrol_path.get_point_position(idx))
+		var min_dist = dist_from_fish(patrol_path.get_point_position(closest_patrol_point_idx))
+		if idx_point_dist < min_dist:
 			closest_patrol_point_idx = idx
 	 
 	# set that as the current point to seek
 	cur_patrol_dest_idx = closest_patrol_point_idx
-	var destination = patrol_path[closest_patrol_point_idx]
+	var destination = patrol_path.get_point_position(closest_patrol_point_idx)
 	
 	var move_direction = (destination - fish.global_position).normalized()
 	

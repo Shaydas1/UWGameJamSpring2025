@@ -13,7 +13,9 @@ func _process(delta: float) -> void:
 	update_state(delta)
 
 func update_state(delta: float) -> void:
-	#print(current_state)
+	if (!current_state):
+		return
+	
 	next_state = current_state.update()
 	
 	if next_state != current_state:

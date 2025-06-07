@@ -14,6 +14,8 @@ func update():
 	return self
 
 func enter():
+	done_fleeing = false
+	
 	timer.start()
 	
 	var move_direction = (fish.global_position - threat_location).normalized()
@@ -23,6 +25,5 @@ func enter():
 
 
 func _on_timer_timeout() -> void:
-	print("Timer done! Should stop fleeing now...")
 	timer.stop()
 	done_fleeing = true

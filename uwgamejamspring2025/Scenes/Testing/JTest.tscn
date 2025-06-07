@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bh31uecwwg144" path="res://Scenes/Player/player.tscn" id="1_3qv5u"]
 [ext_resource type="PackedScene" uid="uid://d0ysbbmva5x1m" path="res://Scenes/Player/hook.tscn" id="2_1nd7i"]
 [ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="3_kql15"]
-[ext_resource type="PackedScene" uid="uid://bbss0dxrgjsvn" path="res://Scenes/Fish/blobfish.tscn" id="4_q288x"]
+[ext_resource type="PackedScene" uid="uid://bbss0dxrgjsvn" path="res://Scenes/Fish/Active fish/blobfish.tscn" id="4_q288x"]
 [ext_resource type="PackedScene" uid="uid://bmw64rxg2i8do" path="res://Scenes/Patrol pathes/patrol_path_1.tscn" id="5_gwxsi"]
-[ext_resource type="PackedScene" uid="uid://coyy6wij5we2q" path="res://Scenes/Fish/dumbfish.tscn" id="6_1nd7i"]
+[ext_resource type="PackedScene" uid="uid://coyy6wij5we2q" path="res://Scenes/Fish/Active fish/dumbfish.tscn" id="6_1nd7i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gt3v2"]
 size = Vector2(151.969, 130.538)

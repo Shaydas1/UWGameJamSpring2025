@@ -1,6 +1,6 @@
 extends ActiveFish
 
-@export var patrol_path_node : PatrolPath
+@export var patrol_path_node : Line2D
 
 func _ready():
 	current_state = $StateWander
