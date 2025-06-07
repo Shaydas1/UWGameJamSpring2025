@@ -1,11 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbss0dxrgjsvn"]
+[gd_scene load_steps=7 format=3 uid="uid://bbss0dxrgjsvn"]
 
 [ext_resource type="Script" uid="uid://d2g6bi2ve7yog" path="res://Scripts/Fish/active_fish.gd" id="1_r1ao6"]
 [ext_resource type="Resource" uid="uid://jlm2n85s36g2" path="res://Resources/blobfish.tres" id="2_y28ji"]
+[ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="3_2vrtk"]
+[ext_resource type="PackedScene" uid="uid://cq0xwuyd6grxr" path="res://Scenes/States/state_dead.tscn" id="3_gkfby"]
+[ext_resource type="PackedScene" uid="uid://cgjm785q5sf6g" path="res://Scenes/States/state_flee.tscn" id="4_2vrtk"]
+[ext_resource type="PackedScene" uid="uid://bg8bh3jp0r6bp" path="res://Scenes/States/state_wander.tscn" id="5_sxe30"]
 
 [node name="Blobfish" type="Node"]
 script = ExtResource("1_r1ao6")
 type = ExtResource("2_y28ji")
+move_speed = 300
 metadata/_custom_type_script = "uid://d2g6bi2ve7yog"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_2vrtk")
+
+[node name="StateDead" parent="." instance=ExtResource("3_gkfby")]
+
+[node name="StateFleeing" parent="." instance=ExtResource("4_2vrtk")]
+
+[node name="StateWander" parent="." instance=ExtResource("5_sxe30")]
