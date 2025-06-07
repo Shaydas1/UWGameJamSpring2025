@@ -4,6 +4,7 @@ class_name ActiveFish
 @export var type : FishType
 
 @export var move_speed : int
+@export var threat_detection_angles : Array[Vector2]
 
 var next_state : State
 var current_state : State

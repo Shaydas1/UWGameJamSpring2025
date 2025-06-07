@@ -1,28 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbss0dxrgjsvn"]
+[gd_scene load_steps=8 format=3 uid="uid://bbss0dxrgjsvn"]
 
 [ext_resource type="Script" uid="uid://d0pttjiudtjan" path="res://Scripts/Fish/blobfish.gd" id="1_gkfby"]
-[ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="3_2vrtk"]
+[ext_resource type="Texture2D" uid="uid://gh53fo2qybfu" path="res://Sprites/fish.png" id="2_tbfve"]
 [ext_resource type="PackedScene" uid="uid://cgjm785q5sf6g" path="res://Scenes/States/state_flee.tscn" id="4_2vrtk"]
+[ext_resource type="Script" uid="uid://d0w1r1sw4u57x" path="res://Scenes/Fish/Active fish/threat_box.gd" id="5_cwjmd"]
 [ext_resource type="PackedScene" uid="uid://bg8bh3jp0r6bp" path="res://Scenes/States/state_wander.tscn" id="5_sxe30"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gkfby"]
-radius = 89.0
-height = 474.0
+radius = 10.0
+height = 78.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gkfby"]
-radius = 686.698
+radius = 100.0
 
 [node name="Blobfish" type="CharacterBody2D" groups=["active_fish"]]
 script = ExtResource("1_gkfby")
-move_speed = 300
+move_speed = 150
+threat_detection_angles = Array[Vector2]([Vector2(0, 180)])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -2.98023e-08)
 scale = Vector2(3, 1.032)
-texture = ExtResource("3_2vrtk")
+texture = ExtResource("2_tbfve")
+region_enabled = true
+region_rect = Rect2(0, 0, 23.1556, 14.9183)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.77636e-15)
+position = Vector2(-1, 1.77636e-15)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gkfby")
 
@@ -39,5 +43,8 @@ dest_tol = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateWander/ThreatBox"]
 shape = SubResource("CircleShape2D_gkfby")
+
+[node name="Node2D" type="Node2D" parent="StateWander/ThreatBox"]
+script = ExtResource("5_cwjmd")
 
 [connection signal="timeout" from="StateFleeing/Timer" to="StateFleeing" method="_on_timer_timeout"]

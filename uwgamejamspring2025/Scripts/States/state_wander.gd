@@ -57,9 +57,15 @@ func update() -> State:
 	
 	for overlapping_body in overlapping_bodies:
 		if overlapping_body.is_in_group("hook"):
-			# If so, set the location of the player in state_flee and return state_flee
-			exit_state.threat_location = overlapping_body.global_position
-			return exit_state
+			# Check if player is in "seen" angles
+			var overlapping_body_angle = (overlapping_body.global_position - fish.global_position).angle()
+			for angle_pair in fish.threat_detection_angles:
+				if angle_pair.x <= overlapping_body_angle and overlapping_body_angle <= angle_pair.y:
+					print("THREAT DETECTED, FLEEING")
+					# If so, set the location of the player in state_flee and return state_flee
+					exit_state.threat_location = overlapping_body.global_position
+					return exit_state
+			
 	
 	# FOR TESTING:
 	if Input.is_action_just_released("ui_accept"):
