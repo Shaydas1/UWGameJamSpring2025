@@ -11,3 +11,4 @@ patrol_path_node = NodePath("PatrolPath1")
 [node name="PatrolPath1" parent="Blobfish" instance=ExtResource("2_idj7w")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.25, 0.25)
