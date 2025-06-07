@@ -15,7 +15,12 @@ texture = ExtResource("3_2vrtk")
 
 [node name="StateDead" parent="." instance=ExtResource("3_gkfby")]
 
-[node name="StateFleeing" parent="." instance=ExtResource("4_2vrtk")]
+[node name="StateFleeing" parent="." node_paths=PackedStringArray("exit_state") instance=ExtResource("4_2vrtk")]
+exit_state = NodePath("../StateWander")
 
-[node name="StateWander" parent="." instance=ExtResource("5_sxe30")]
+[node name="Timer" type="Timer" parent="StateFleeing"]
+wait_time = 5.0
+
+[node name="StateWander" parent="." node_paths=PackedStringArray("exit_state") instance=ExtResource("5_sxe30")]
+exit_state = NodePath("../StateFleeing")
 dest_tol = 10.0
