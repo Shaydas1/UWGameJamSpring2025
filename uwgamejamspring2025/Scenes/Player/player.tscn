@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh31uecwwg144"]
+
+[ext_resource type="Script" uid="uid://btpwjr5kbtivy" path="res://Scripts/Player/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://gf0klh0bhd8o" path="res://Scripts/Player/jerk_controller.gd" id="2_a3d8c"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_v0iea")
+metadata/_custom_type_script = "uid://btpwjr5kbtivy"
+
+[node name="JerkController" type="Node" parent="."]
+script = ExtResource("2_a3d8c")
+reel_strength = 200.0
+jerk_strength = 2000.0
+metadata/_custom_type_script = "uid://gf0klh0bhd8o"
+
+[node name="JerkTimer" type="Timer" parent="JerkController"]
+wait_time = 0.5
+
+[node name="JerkBuffer" type="Timer" parent="JerkController"]
+wait_time = 0.1
+
+[node name="JerkDuration" type="Timer" parent="JerkController"]
+wait_time = 0.05
