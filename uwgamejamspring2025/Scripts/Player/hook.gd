@@ -8,6 +8,7 @@ class_name Hook
 
 @export var max_distance : float
 @export var jerk_cut_factor: float = 0.2
+
 signal entered_water
 signal exited_water
 
@@ -23,6 +24,7 @@ var enabled : bool = false
 
 var target : Node2D = null
 
+var caught_fish : Array[CaughtFish] = []
 
 func enable():
 	enabled = true
@@ -54,12 +56,10 @@ func _set_reeling(value: bool):
 func start_reeling(strength: float):
 	_set_reeling(true)
 	reel_strength = strength
-	print_debug(gravity_scale, in_water)
 
 
 func stop_reeling():
 	_set_reeling(false)
-	print_debug(gravity_scale, in_water)
 	
 
 func _get_direction_to_target() -> Vector2:
@@ -79,10 +79,30 @@ func end_jerk():
 		linear_velocity.y *= jerk_cut_factor
 	
 	if linear_velocity.x < 0:
-		linear_velocity.x *= jerk_cut_factor
+		linear_velocity.x *= 0 
 
 func reel():
 	apply_central_force(reel_strength * _get_direction_to_target())
+
+
+func hook_fish(fish : Node2D):
+	fish = fish as ActiveFish
+	
+	if fish == null:
+		return
+		
+	var new_fish = fish.type.caught_fish.instantiate()
+	add_child(new_fish)
+	caught_fish.append(new_fish)
+	
+	fish.queue_free()
+
+func free_fish():
+	for fish in caught_fish:
+		fish.queue_free()
+	
+	caught_fish.clear()
+	
 
 func initialize(target: Node2D):
 	self.target = target
@@ -113,7 +133,6 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 func _physics_process(delta):
 	if not enabled:
 		return
-	
 	
 		
 	if position.x < 0:
@@ -156,9 +175,19 @@ func _on_area_entered(area):
 	if area.is_in_group("rock"):
 		emit_signal("hook_lost")
 
+
 func _on_area_exit(area):
 	if not enabled:
 		return
 		
 	if area.is_in_group("water"):
 		on_exit_water()
+
+
+func _on_body_entered(body):
+	if not enabled:
+		return
+		
+	if body.is_in_group("active_fish"):
+		hook_fish(body)
+		

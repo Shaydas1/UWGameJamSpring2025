@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bh31uecwwg144"]
+[gd_scene load_steps=5 format=3 uid="uid://bh31uecwwg144"]
 
 [ext_resource type="Script" uid="uid://btpwjr5kbtivy" path="res://Scripts/Player/player.gd" id="1_v0iea"]
-[ext_resource type="Script" uid="uid://gf0klh0bhd8o" path="res://Scripts/Player/jerk_controller.gd" id="2_a3d8c"]
+[ext_resource type="Script" uid="uid://gf0klh0bhd8o" path="res://Scripts/Player/rod_controller.gd" id="2_a3d8c"]
+[ext_resource type="Script" uid="uid://cqk0ysppe2ydf" path="res://Scripts/Player/cast_controller.gd" id="3_mtuoh"]
+[ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="4_htcer"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_v0iea")
@@ -13,11 +15,10 @@ reel_strength = 200.0
 jerk_strength = 2000.0
 metadata/_custom_type_script = "uid://gf0klh0bhd8o"
 
-[node name="JerkTimer" type="Timer" parent="JerkController"]
-wait_time = 0.5
+[node name="CastController" type="Node" parent="."]
+script = ExtResource("3_mtuoh")
+metadata/_custom_type_script = "uid://cqk0ysppe2ydf"
 
-[node name="JerkBuffer" type="Timer" parent="JerkController"]
-wait_time = 0.1
-
-[node name="JerkDuration" type="Timer" parent="JerkController"]
-wait_time = 0.05
+[node name="CastIndicator" type="Sprite2D" parent="CastController"]
+texture = ExtResource("4_htcer")
+offset = Vector2(0, -100)

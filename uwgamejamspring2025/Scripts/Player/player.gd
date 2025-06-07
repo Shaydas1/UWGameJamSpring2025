@@ -1,8 +1,8 @@
 extends Node2D
 class_name Player
 
-@export var cast_strength: float = 5000.0
-@export var cast_angle: float = 45
+@export var cast_strength: float = 2500.0
+@export var cast_angle: float = 0
 
 @onready var hook : Hook
 
@@ -15,31 +15,31 @@ func _ready():
 	
 	hook.initialize(self)
 	$JerkController.initialize(hook)
+	$CastController.initialize(hook)
 	
 	hook.exited_water.connect(self.on_hook_exit_water)
 	hook.entered_water.connect(self.on_hook_enter_water)
-
-
-func _process(delta):
-	if hook_held:
-		if Input.is_action_just_pressed("ui_accept"):
-			cast_hook()
-		
+	
+	$CastController.on_cast.connect(self.on_cast)
 
 func on_hook_exit_water():
 	hook.disable()
 	$JerkController.disable()
+	$CastController.enable()
 	
 	hook.set_deferred("position", Vector2.ZERO)
 	hook_held = true
 	
+	for fish in hook.caught_fish:
+		print(fish.type.score)
 
 
 func on_hook_enter_water():
 	$JerkController.enable()
 
 
-func cast_hook():
+func on_cast():
 	hook.enable()
-	hook.cast(cast_strength, cast_angle)
+	$JerkController.enable()
+	$CastController.disable()
 	hook_held = false
