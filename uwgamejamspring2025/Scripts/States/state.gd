@@ -3,7 +3,10 @@ extends Node
 class_name State
 
 func update():
-	pass
+	return self
 
 func enter():
+	pass
+
+func end():
 	pass
