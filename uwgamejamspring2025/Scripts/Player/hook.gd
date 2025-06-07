@@ -35,6 +35,7 @@ func enable():
 
 func disable():
 	enabled = false
+	$Sprite2D.rotation = 0
 
 
 func cast(strength: float, angle : float):
@@ -144,6 +145,10 @@ func _physics_process(delta):
 		if linear_velocity.y > max_fall_speed:
 			linear_velocity.y = max_fall_speed
 		
+		var direction = linear_velocity
+		direction.y = -abs(direction.y)
+		$Sprite2D.rotation = PI/2 + direction.angle()
+	
 	var offset = global_position - target.global_position
 	
 	if offset.length() > max_distance and linear_velocity.dot(offset) > 0:

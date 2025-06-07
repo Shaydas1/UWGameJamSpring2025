@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh31uecwwg144"]
+[gd_scene load_steps=6 format=3 uid="uid://bh31uecwwg144"]
 
 [ext_resource type="Script" uid="uid://btpwjr5kbtivy" path="res://Scripts/Player/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://gf0klh0bhd8o" path="res://Scripts/Player/rod_controller.gd" id="2_a3d8c"]
 [ext_resource type="Script" uid="uid://cqk0ysppe2ydf" path="res://Scripts/Player/cast_controller.gd" id="3_mtuoh"]
-[ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="4_htcer"]
+[ext_resource type="Texture2D" uid="uid://gh53fo2qybfu" path="res://sprites/fish.png" id="4_mtuoh"]
+
+[sub_resource type="Gradient" id="Gradient_htcer"]
+colors = PackedColorArray(0.353438, 0.353438, 0.353438, 1, 1, 1, 1, 1)
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_v0iea")
@@ -11,14 +14,23 @@ metadata/_custom_type_script = "uid://btpwjr5kbtivy"
 
 [node name="JerkController" type="Node" parent="."]
 script = ExtResource("2_a3d8c")
-reel_strength = 200.0
-jerk_strength = 2000.0
+reel_strength = 20.0
+jerk_strength = 200.0
 metadata/_custom_type_script = "uid://gf0klh0bhd8o"
 
 [node name="CastController" type="Node" parent="."]
 script = ExtResource("3_mtuoh")
+cast_strength = 500.0
 metadata/_custom_type_script = "uid://cqk0ysppe2ydf"
 
 [node name="CastIndicator" type="Sprite2D" parent="CastController"]
-texture = ExtResource("4_htcer")
-offset = Vector2(0, -100)
+texture = ExtResource("4_mtuoh")
+offset = Vector2(0, -10)
+region_enabled = true
+region_rect = Rect2(48, 17, 8, 15)
+
+[node name="FishingLine" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0)
+width = 1.0
+gradient = SubResource("Gradient_htcer")
+texture_mode = 1

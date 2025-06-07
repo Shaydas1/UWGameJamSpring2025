@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3wh2fsl5aotw"]
+[gd_scene load_steps=5 format=3 uid="uid://c3wh2fsl5aotw"]
 
-[ext_resource type="PackedScene" uid="uid://coyy6wij5we2q" path="res://Scenes/Fish/dumbfish.tscn" id="3_cc3y0"]
 [ext_resource type="PackedScene" uid="uid://bh31uecwwg144" path="res://Scenes/Player/player.tscn" id="3_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://d0ysbbmva5x1m" path="res://Scenes/Player/hook.tscn" id="4_v1gob"]
 [ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="5_jw32o"]
@@ -11,20 +10,15 @@ size = Vector2(151.969, 130.538)
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("3_pbw6q")]
-position = Vector2(0, -160)
 cast_strength = 2000.0
 
 [node name="Hook" parent="Player" instance=ExtResource("4_v1gob")]
 
 [node name="Camera2D" type="Camera2D" parent="Player/Hook"]
-position = Vector2(0, 160)
-zoom = Vector2(0.2, 0.2)
+position = Vector2(0, 2)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 drag_vertical_enabled = true
-
-[node name="FishingLine" type="Line2D" parent="Player"]
-
-[node name="Dumbfish" parent="." instance=ExtResource("3_cc3y0")]
 
 [node name="water" type="Area2D" parent="." groups=["water"]]
 
