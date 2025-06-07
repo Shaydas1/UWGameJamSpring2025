@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="UWGameJamSpring2025"
+run/main_scene="uid://clb53t7igyyw6"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

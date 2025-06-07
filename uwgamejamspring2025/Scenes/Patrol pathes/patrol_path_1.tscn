@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmw64rxg2i8do"]
+
+[ext_resource type="Script" uid="uid://1fl4jxp4wn5c" path="res://Scripts/patrol_path.gd" id="1_u6awv"]
+
+[node name="PatrolPath1" type="Node"]
+script = ExtResource("1_u6awv")
+metadata/_custom_type_script = "uid://1fl4jxp4wn5c"
+
+[node name="Point1" type="Node2D" parent="."]
+position = Vector2(432, -139)
+
+[node name="Point2" type="Node2D" parent="."]
+position = Vector2(-420, -228)

@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://clb53t7igyyw6"]
+[gd_scene load_steps=3 format=3 uid="uid://clb53t7igyyw6"]
+
+[ext_resource type="PackedScene" uid="uid://bbss0dxrgjsvn" path="res://Scenes/blobfish.tscn" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://bmw64rxg2i8do" path="res://Scenes/Patrol pathes/patrol_path_1.tscn" id="2_idj7w"]
 
 [node name="Main" type="Node2D"]
+
+[node name="Blobfish" parent="." node_paths=PackedStringArray("patrol_path_node") instance=ExtResource("1_r150o")]
+patrol_path_node = NodePath("PatrolPath1")
+
+[node name="PatrolPath1" parent="Blobfish" instance=ExtResource("2_idj7w")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

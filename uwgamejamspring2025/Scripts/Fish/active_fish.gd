@@ -3,10 +3,10 @@ class_name ActiveFish
 
 @export var type : FishType
 
+@export var move_speed : int
+
 var next_state : State
 var current_state : State
-
-@export var move_speed : int
 
 # state machine logic
 func _process(delta: float) -> void:
