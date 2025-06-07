@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cgjm785q5sf6g" path="res://Scenes/States/state_flee.tscn" id="4_2vrtk"]
 [ext_resource type="PackedScene" uid="uid://bg8bh3jp0r6bp" path="res://Scenes/States/state_wander.tscn" id="5_sxe30"]
 
-[node name="Blobfish" type="CharacterBody2D"]
+[node name="Blobfish" type="CharacterBody2D" groups=["active_fish"]]
 script = ExtResource("1_gkfby")
 move_speed = 300
 
@@ -24,3 +24,7 @@ wait_time = 5.0
 [node name="StateWander" parent="." node_paths=PackedStringArray("exit_state") instance=ExtResource("5_sxe30")]
 exit_state = NodePath("../StateFleeing")
 dest_tol = 10.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

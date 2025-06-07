@@ -38,7 +38,10 @@ func update() -> State:
 			set_next_patrol_destination()
 	
 	# Check if player is detected
-	# If so, return state_flee
+	#get_overlapping_areas()
+	#if child.is_in_group("hook"):
+		# If so, return state_flee
+		#pass
 	
 	# otherwise, return state_wander
 	return self
