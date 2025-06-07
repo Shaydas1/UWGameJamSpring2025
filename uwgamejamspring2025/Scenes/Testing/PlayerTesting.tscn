@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3wh2fsl5aotw"]
+
+[ext_resource type="PackedScene" uid="uid://bbss0dxrgjsvn" path="res://Scenes/blobfish.tscn" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://bmw64rxg2i8do" path="res://Scenes/Patrol pathes/patrol_path_1.tscn" id="2_idj7w"]
+[ext_resource type="PackedScene" uid="uid://bh31uecwwg144" path="res://Scenes/Player/player.tscn" id="3_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://d0ysbbmva5x1m" path="res://Scenes/Player/hook.tscn" id="4_v1gob"]
+[ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="5_jw32o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50glp"]
+size = Vector2(151.969, 130.538)
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("3_pbw6q")]
+position = Vector2(0, -160)
+cast_strength = 2000.0
+
+[node name="Hook" parent="Player" instance=ExtResource("4_v1gob")]
+
+[node name="Camera2D" type="Camera2D" parent="Player/Hook"]
+position = Vector2(0, 160)
+zoom = Vector2(0.2, 0.2)
+position_smoothing_enabled = true
+drag_vertical_enabled = true
+
+[node name="FishingLine" type="Line2D" parent="Player"]
+
+[node name="water" type="Area2D" parent="." groups=["water"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="water"]
+position = Vector2(36780.3, 19581)
+scale = Vector2(556.348, 294.281)
+shape = SubResource("RectangleShape2D_50glp")
+one_way_collision_margin = 3.4
+debug_color = Color(0.102432, 0.561553, 0.865262, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="water"]
+position = Vector2(5, 337)
+scale = Vector2(80.9377, 0.792241)
+texture = ExtResource("5_jw32o")
+
+[node name="Blobfish" parent="." node_paths=PackedStringArray("patrol_path_node") instance=ExtResource("1_r150o")]
+position = Vector2(10, 778)
+patrol_path_node = NodePath("PatrolPath1")
+
+[node name="PatrolPath1" parent="Blobfish" instance=ExtResource("2_idj7w")]

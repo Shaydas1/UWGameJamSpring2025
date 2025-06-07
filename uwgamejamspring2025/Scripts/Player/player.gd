@@ -21,6 +21,13 @@ func _ready():
 	hook.entered_water.connect(self.on_hook_enter_water)
 	
 	$CastController.on_cast.connect(self.on_cast)
+	
+@onready var line := $FishingLine
+
+func _process(_delta):
+	line.clear_points()
+	line.add_point(Vector2.ZERO)  # origin
+	line.add_point(hook.global_position - global_position)
 
 func on_hook_exit_water():
 	hook.disable()
