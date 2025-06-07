@@ -4,4 +4,3 @@ extends Camera2D
 
 func _process(delta):
 	global_position = target.position
-3
