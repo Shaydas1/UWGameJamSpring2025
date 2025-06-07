@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c07cyo4gdx7cl"]
+[gd_scene load_steps=8 format=3 uid="uid://dph6afyblod3y"]
 
 [ext_resource type="Script" uid="uid://d0pttjiudtjan" path="res://Scripts/Fish/blobfish.gd" id="1_gkfby"]
 [ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="3_2vrtk"]

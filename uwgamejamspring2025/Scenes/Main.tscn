@@ -16,6 +16,9 @@ position = Vector2(0, -160)
 cast_strength = 2000.0
 
 [node name="Hook" parent="Player" instance=ExtResource("4_v1gob")]
+water_gravity_scale = 0.8
+max_fall_speed = 500.0
+max_distance = 10000.0
 
 [node name="Camera2D" type="Camera2D" parent="Player/Hook"]
 position = Vector2(0, 160)
@@ -42,3 +45,4 @@ position = Vector2(2082, 1710)
 patrol_path_node = NodePath("PatrolPath2")
 
 [node name="PatrolPath2" parent="Blobfish" instance=ExtResource("5_pbw6q")]
+visible = false
