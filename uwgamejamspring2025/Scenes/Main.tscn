@@ -4,27 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://bh31uecwwg144" path="res://Scenes/Player/player.tscn" id="3_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://d0ysbbmva5x1m" path="res://Scenes/Player/hook.tscn" id="4_v1gob"]
 [ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="5_jw32o"]
-[ext_resource type="PackedScene" uid="uid://desglenogeru6" path="res://Scenes/Patrol pathes/patrol_path_2.tscn" id="5_pbw6q"]
+[ext_resource type="PackedScene" path="res://Scenes/Patrol pathes/patrol_path_2.tscn" id="5_pbw6q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50glp"]
 size = Vector2(151.969, 130.538)
 
 [node name="Main" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("3_pbw6q")]
-position = Vector2(0, -160)
-cast_strength = 2000.0
-
-[node name="Hook" parent="Player" instance=ExtResource("4_v1gob")]
-water_gravity_scale = 0.8
-max_fall_speed = 500.0
-max_distance = 10000.0
-
-[node name="Camera2D" type="Camera2D" parent="Player/Hook"]
-position = Vector2(0, 160)
-zoom = Vector2(0.2, 0.2)
-position_smoothing_enabled = true
-drag_vertical_enabled = true
 
 [node name="water" type="Area2D" parent="." groups=["water"]]
 
@@ -45,4 +30,14 @@ position = Vector2(2082, 1710)
 patrol_path_node = NodePath("PatrolPath2")
 
 [node name="PatrolPath2" parent="Blobfish" instance=ExtResource("5_pbw6q")]
-visible = false
+
+[node name="Player" parent="." instance=ExtResource("3_pbw6q")]
+cast_strength = 2000.0
+
+[node name="Hook" parent="Player" instance=ExtResource("4_v1gob")]
+
+[node name="Camera2D" type="Camera2D" parent="Player/Hook"]
+position = Vector2(0, 2)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+drag_vertical_enabled = true

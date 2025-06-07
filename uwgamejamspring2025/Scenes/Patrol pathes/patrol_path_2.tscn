@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://desglenogeru6"]
+[gd_scene load_steps=0 format=3 uid="uid://desglenogeru6"]
 
 [node name="PatrolPath2" type="Line2D"]
 points = PackedVector2Array(-1162, 1, -360, -567, 363, -584, 1186, -3, 384, 435, -423, 431)
