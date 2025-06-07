@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://coyy6wij5we2q"]
+
+[ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="1_1e3xm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3cdss"]
+radius = 89.0
+height = 474.0
+
+[node name="Dumbfish" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2.98023e-08)
+scale = Vector2(3, 1.032)
+texture = ExtResource("1_1e3xm")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.77636e-15)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3cdss")

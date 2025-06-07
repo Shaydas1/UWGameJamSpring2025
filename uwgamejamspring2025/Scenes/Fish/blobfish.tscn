@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bbss0dxrgjsvn"]
 
-[ext_resource type="Script" path="res://Scripts/Fish/blobfish.gd" id="1_gkfby"]
+[ext_resource type="Script" uid="uid://d0pttjiudtjan" path="res://Scripts/Fish/blobfish.gd" id="1_gkfby"]
 [ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="3_2vrtk"]
 [ext_resource type="PackedScene" uid="uid://cq0xwuyd6grxr" path="res://Scenes/States/state_dead.tscn" id="3_gkfby"]
 [ext_resource type="PackedScene" uid="uid://cgjm785q5sf6g" path="res://Scenes/States/state_flee.tscn" id="4_2vrtk"]
