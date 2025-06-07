@@ -11,9 +11,7 @@ radius = 64.0
 [node name="Hook" type="RigidBody2D"]
 lock_rotation = true
 script = ExtResource("1_3f4bw")
-water_gravity_scale = null
-water_damping = null
-max_speed = null
+max_distance = 10000.0
 metadata/_custom_type_script = "uid://h75fjws6n6gm"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

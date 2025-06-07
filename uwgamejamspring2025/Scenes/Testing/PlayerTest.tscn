@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://co8qa22cll52f"]
 
-[ext_resource type="PackedScene" uid="uid://bh31uecwwg144" path="res://Scenes/player.tscn" id="1_e3nua"]
+[ext_resource type="PackedScene" uid="uid://bh31uecwwg144" path="res://Scenes/Player/player.tscn" id="1_e3nua"]
 [ext_resource type="PackedScene" uid="uid://d0ysbbmva5x1m" path="res://Scenes/Player/hook.tscn" id="2_xpv2e"]
 [ext_resource type="Texture2D" uid="uid://ndpwmba1hhrc" path="res://icon.svg" id="3_xpv2e"]
 
@@ -9,13 +9,17 @@ size = Vector2(20, 130.538)
 
 [node name="PlayerTest" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.1, 0.1)
-
 [node name="Player" parent="." instance=ExtResource("1_e3nua")]
 position = Vector2(0, -160)
+cast_strength = 2000.0
 
 [node name="Hook" parent="Player" instance=ExtResource("2_xpv2e")]
+
+[node name="Camera2D" type="Camera2D" parent="Player/Hook"]
+position = Vector2(0, 160)
+zoom = Vector2(0.1, 0.1)
+position_smoothing_enabled = true
+drag_vertical_enabled = true
 
 [node name="water" type="Area2D" parent="." groups=["water"]]
 
